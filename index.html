@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>NEXA Login</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <main class="login-container">
+    <header class="brand-area">
+      <div class="logo-line">
+        <div
+          class="nexa-logo"
+          aria-label="NEXA logo"
+        >
+          <span class="nexa-wordmark">NEXA</span>
+        </div>
+      </div>
+
+      <p class="brand-name">NEXA</p>
+    </header>
+
+    <form
+      class="login-form"
+      id="loginForm"
+      novalidate
+    >
+      <label
+        class="input-box"
+        for="username"
+      >
+        <span class="input-icon">
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <circle
+              cx="12"
+              cy="8"
+              r="4"
+            ></circle>
+
+            <path
+              d="M4.5 20c.7-4 3.1-6 7.5-6s6.8 2 7.5 6"
+            ></path>
+          </svg>
+        </span>
+
+        <input
+          id="username"
+          name="username"
+          type="text"
+          placeholder="USERNAME"
+          autocomplete="username"
+          required
+        />
+      </label>
+
+      <div class="input-box">
+        <label
+          class="input-icon"
+          for="password"
+          aria-label="Password"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <rect
+              x="5"
+              y="10"
+              width="14"
+              height="10"
+              rx="2"
+            ></rect>
+
+            <path
+              d="M8 10V7a4 4 0 0 1 8 0v3"
+            ></path>
+          </svg>
+        </label>
+
+        <input
+          id="password"
+          name="password"
+          type="password"
+          placeholder="PASSWORD"
+          autocomplete="current-password"
+          required
+        />
+
+        <button
+          class="password-toggle"
+          id="passwordToggle"
+          type="button"
+          aria-label="Show password"
+          aria-pressed="false"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"
+            ></path>
+
+            <circle
+              cx="12"
+              cy="12"
+              r="2.5"
+            ></circle>
+          </svg>
+        </button>
+      </div>
+
+      <button
+        class="login-button"
+        type="submit"
+      >
+        LOGIN
+      </button>
+    </form>
+
+    <div class="login-footer">
+      <label class="remember-label">
+        <input
+          type="checkbox"
+          name="remember"
+        />
+
+        <span class="check"></span>
+
+        <span>Remember me</span>
+      </label>
+
+      <div class="system-status">
+        <span class="status-dot"></span>
+
+        <span>Secure system access</span>
+      </div>
+    </div>
+
+    <p
+      class="form-message"
+      id="formMessage"
+      role="alert"
+    ></p>
+  </main>
+
+  <script>
+    const loginForm =
+      document.getElementById("loginForm");
+
+    const usernameInput =
+      document.getElementById("username");
+
+    const passwordInput =
+      document.getElementById("password");
+
+    const passwordToggle =
+      document.getElementById("passwordToggle");
+
+    const formMessage =
+      document.getElementById("formMessage");
+
+    passwordToggle.addEventListener("click", () => {
+      const passwordIsVisible =
+        passwordInput.type === "text";
+
+      passwordInput.type =
+        passwordIsVisible
+          ? "password"
+          : "text";
+
+      passwordToggle.setAttribute(
+        "aria-pressed",
+        String(!passwordIsVisible)
+      );
+
+      passwordToggle.setAttribute(
+        "aria-label",
+        passwordIsVisible
+          ? "Show password"
+          : "Hide password"
+      );
+    });
+
+    loginForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const username =
+        usernameInput.value.trim();
+
+      const password =
+        passwordInput.value;
+
+      formMessage.classList.remove("visible");
+      formMessage.textContent = "";
+
+      if (!username || !password) {
+        formMessage.textContent =
+          "Enter your username and password to continue.";
+
+        formMessage.classList.add("visible");
+        return;
+      }
+
+      /*
+        Replace this section with your actual
+        authentication API request.
+      */
+
+      console.log("Login submitted", {
+        username
+      });
+    });
+  </script>
+</body>
+</html>
